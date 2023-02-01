@@ -32,25 +32,53 @@ def send_mail(recipient: str, sender: str, subject: str, body: str) -> bool:
     pprint.pprint(response.json())
 
 def get_inbox(recipient: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets a reciepients inbox by sending a get request to a /mail/inbox endpoint
+
+    Args:
+        recipient (str): The name of the specific user
+
+    Returns:
+        None
     """
     response = requests.get(f'{SERVER}/mail/inbox/{recipient}')
     pprint.pprint(response.json())
 
 def get_sent(sender: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets a users sent emails by sending a get request to a /mail/sent endpoint
+
+    Args: 
+        sender (str): The name of the specific user
+
+    Returns:
+        None
     """
     response = requests.get(f'{SERVER}/mail/sent/{sender}')
     pprint.pprint(response.json())
 
 def get_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets a users specific mail identified by the message by sending a get request to a /mail endpoint
+
+    Args:
+        mail_id (str): The specific ID of the message
+
+    Returns:
+        None
     """
     response = requests.get(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
 
 def delete_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Deletes a specific mail identified by the mail id by sending a delete request to /mail
+
+    Args:
+        mail_id (str): The specific ID of the message
+
+    Returns:
+        None
     """
     response = requests.delete(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
@@ -83,10 +111,10 @@ def get_parser() -> argparse.ArgumentParser:
     )
 
     inbox_parser = subparsers.add_parser('inbox', help='Get your inbox')
-    inbox_parser.add_argument('-u', "--user", help='The recipient of the mail')
+    inbox_parser.add_argument('-u', "--user", help='The recipient of the mail', required=True)
 
     sent_parser = subparsers.add_parser('sent', help='Get your sent mail')
-    sent_parser.add_argument('-u', "--user", help='The sender of the mail')
+    sent_parser.add_argument('-u', "--user", help='The sender of the mail', required=True)
 
     get_parser = subparsers.add_parser('get', help='Get a mail')
     get_parser.add_argument('mail_id', help='The id of the mail')
