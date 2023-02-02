@@ -16,7 +16,7 @@ According to the AWS article, resources are any information that the server prov
 
 ### Question 3:
 
-???
+Put is one API Method which is unused in this lab. Put allows you to update a a set of values with another set of values. This can be used mail! For example, if you made a typo in your mail, so with put you can update ur mail message with a different message.
 
 ### Question 4:
 
